@@ -10,12 +10,17 @@ def register(context):
 
     while not success:
         socket.send_json(
-            {"action": "register", "register_as": "subscriber", "topic": "camera"}
+            {"action": "register", 
+             "register_as": "subscriber", 
+             "subscribe_to_node": "camera", 
+             "subscribe_to_topic": "frame"
+             }
         )
 
         message = socket.recv_json()
         if message['result'] == 'success':
             success = True
+            print('connected')
             return message['data']['fullAddress']
         time.sleep(0.1)
-        print('still in loop')
+        #print('still in loop')

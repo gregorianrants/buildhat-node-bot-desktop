@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "floor-detector": "python vision\\floor-detector.py"
+    "name-server": "node main.js",
+    "display": "python3 vision/display/main.py"
   },
   "author": "",
   "license": "ISC",
