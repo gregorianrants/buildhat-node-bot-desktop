@@ -1,0 +1,3 @@
+[submodule "build-hat-node-bot-shared"]
+	path = build-hat-node-bot-shared
+	url = https://github.com/gregorianrants/build-hat-node-bot-shared.git
