@@ -9,7 +9,7 @@ function getPublisher({subscribe_to_node,subscribe_to_topic }) {
     return (publisher.topic === subscribe_to_topic  &&
     publisher.node ===subscribe_to_node  )
   });
-  console.log(filtered);
+  //console.log(filtered);
   if (filtered.length == 0) {
     return false;
   }

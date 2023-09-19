@@ -2,7 +2,15 @@ import sys
 import zmq
 import cv2
 import numpy as np
-from register import register
+
+
+sys.path.append(
+    "/home/gregor/Projects/build-hat-node-bot-desktop",
+)
+
+print(sys.path)
+
+from build_hat_node_bot_shared.registerSubscriber import register
 
 context = zmq.Context()
 fullAddress = register(context)
