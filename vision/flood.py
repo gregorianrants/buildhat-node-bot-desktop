@@ -28,6 +28,7 @@ def flood(original_image,lower_margin=(8,2,2),upper_margin=(14,2,2)):
   
     mask = np.zeros((height+2,width+2),'uint8')
 
+
     floodflags = 8
     floodflags |= cv2.FLOODFILL_MASK_ONLY
     floodflags |= (255 << 8)

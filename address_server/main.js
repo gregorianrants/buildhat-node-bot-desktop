@@ -5,10 +5,17 @@ let publishers = [];
 let nextPort = 5000;
 
 function getPublisher({subscribe_to_node,subscribe_to_topic }) {
-  let filtered = publishers.filter((publisher) => {
-    return (publisher.topic === subscribe_to_topic  &&
-    publisher.node ===subscribe_to_node  )
-  });
+  //providing a node to subscribe to is optional, if subscribe_to_node = any
+  //all publishers should return true in the filter function
+  let nodeFilter = (publisher)=> (
+    subscribe_to_node==='any' ? true : subscribe_to_node ===publisher.node
+  )
+
+  let filterFunction =(publisher) => (publisher.topic === subscribe_to_topic  &&
+    nodeFilter(publisher) )
+  
+  
+  let filtered = publishers.filter(filterFunction);
   //console.log(filtered);
   if (filtered.length == 0) {
     return false;
@@ -30,6 +37,7 @@ function createPublisher({node, topic, address }) {
     fullAddress: `${address}:${nextPort}`,
   };
   publishers.push(publisher);
+  console.log('publisher registered:',publisher)
   return publisher;
 }
 
@@ -42,7 +50,7 @@ function handlePublish(msg) {
 function handleSubscription({ subscribe_to_node,subscribe_to_topic }) {
   let publisher = getPublisher( {subscribe_to_node,subscribe_to_topic });
   if (publisher) {
-    
+    console.log('node: ', subscribe_to_node, ', topic: ' , subscribe_to_topic, ', subscribing to publisher: ',publisher)
     return { result: "success", data: { type: "subscription", ...publisher } };
   }
   return { result: "not_ready" };

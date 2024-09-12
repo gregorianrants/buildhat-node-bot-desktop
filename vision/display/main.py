@@ -10,7 +10,7 @@ sys.path.append(
 
 print(sys.path)
 
-from build_hat_node_bot_shared.registerSubscriber import register
+from build_hat_node_bot_shared.network_py.Subscriber import register
 
 context = zmq.Context()
 fullAddress = register(context)

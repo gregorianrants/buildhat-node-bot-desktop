@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "floor-detector": "concurrently --kill-others \"node main.js\" \"sleep 1 & python3 vision/floor_detector.py\"",
+    "floor-detector": "concurrently --kill-others \"node address_server/main.js\" \"sleep 1 & python3 -m vision.floor_detector\"",
     "display": "python3 vision/display/main.py",
+    "odometry1": "concurrently --kill-others \"node address_server/main.js\" \"sleep 1 & node odometry/main.js\"",
+    "odometry2": "concurrently --kill-others \"node address_server/main.js\" \"sleep 1 & python3 -m odometry.main\"",
     "name-server": "node main.js"
   },
   "author": "",
